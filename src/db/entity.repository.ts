@@ -1,14 +1,14 @@
 import { Document, FilterQuery, Model, UpdateQuery } from 'mongoose'
 
 export abstract class EntityRepository<T extends Document> {
-  public constructor(protected readonly entityModel: Model<T>) {}
+  constructor(protected readonly entityModel: Model<T>) {}
 
-  public async findOne(
-    filterQuery: FilterQuery<T>,
+  async findOne(
+    entityFilterQuery: FilterQuery<T>,
     projection?: Record<string, unknown>
   ): Promise<T | null> {
     return this.entityModel
-      .findOne(filterQuery, {
+      .findOne(entityFilterQuery, {
         _id: 0,
         __v: 0,
         ...projection
@@ -16,24 +16,26 @@ export abstract class EntityRepository<T extends Document> {
       .exec()
   }
 
-  public async findMany(filterQuery: FilterQuery<T>): Promise<T[] | null> {
-    return this.entityModel.find(filterQuery).exec()
+  async find(entityFilterQuery: FilterQuery<T>): Promise<T[] | null> {
+    return this.entityModel.find(entityFilterQuery)
   }
 
-  public async create(createEntityData: unknown): Promise<T> {
+  async save(createEntityData: unknown): Promise<T> {
     const entity = new this.entityModel(createEntityData)
-    return entity.save()
+    return (await entity.save()) as T
   }
 
-  public async findOneAndUpdate(
-    filterQuery: FilterQuery<T>,
-    createEntityData: UpdateQuery<unknown>
-  ): Promise<T> {
-    return this.entityModel.findByIdAndUpdate(filterQuery, createEntityData, { new: true })
+  async findOneAndUpdate(
+    entityFilterQuery: FilterQuery<T>,
+    updateEntityData: UpdateQuery<unknown>
+  ): Promise<T | null> {
+    return this.entityModel.findOneAndUpdate(entityFilterQuery, updateEntityData, {
+      new: true
+    })
   }
 
-  public async findOneAndDelete(filterQuery: FilterQuery<T>): Promise<boolean> {
-    const deleteResult = await this.entityModel.deleteMany(filterQuery)
+  async findOneAndDelete(entityFilterQuery: FilterQuery<T>): Promise<boolean> {
+    const deleteResult = await this.entityModel.deleteMany(entityFilterQuery)
     return deleteResult.deletedCount >= 1
   }
 }
