@@ -27,7 +27,7 @@ export abstract class MockModel<T> {
     return this.entityStub
   }
 
-  public async findOneAndDelete(): Promise<boolean> {
-    return true
+  public async deleteMany(): Promise<{ deletedCount: number }> {
+    return { deletedCount: 1 }
   }
 }

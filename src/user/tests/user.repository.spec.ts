@@ -1,14 +1,14 @@
 import { User } from '@/user/schemas/user.schema'
+import { userStub } from '@/user/tests/stubs/user.stub'
 import { UserModel } from '@/user/tests/supports/user.model'
+import { UserRepository } from '@/user/user.repository'
 import { getModelToken } from '@nestjs/mongoose'
 import { Test } from '@nestjs/testing'
-import { Types } from 'mongoose'
-import { userStub, usersStubs } from '@/user/tests/stubs/user.stub'
-import { UserRepository } from '@/user/user.repository'
+import { FilterQuery, Types } from 'mongoose'
 
 describe('UserRepository', () => {
   let userRepository: UserRepository
-  const filterQuery = { _id: new Types.ObjectId() }
+  const filterQuery: FilterQuery<User> = { _id: new Types.ObjectId() }
 
   describe('find operations', () => {
     let userModel: UserModel
@@ -63,7 +63,7 @@ describe('UserRepository', () => {
         })
 
         test('then it should return users', () => {
-          expect(users).toEqual(usersStubs())
+          expect(users).toEqual([userStub()])
         })
       })
     })
@@ -78,11 +78,13 @@ describe('UserRepository', () => {
         })
 
         test('then it should call the userModel', () => {
-          expect(userModel.findOneAndUpdate).toHaveBeenCalledWith(filterQuery, userStub())
+          expect(userModel.findOneAndUpdate).toHaveBeenCalledWith(filterQuery, userStub(), {
+            new: true
+          })
         })
 
         test('then it should return new updated user', () => {
-          expect(user).toEqual(userStub)
+          expect(user).toEqual(userStub())
         })
       })
     })
@@ -92,12 +94,12 @@ describe('UserRepository', () => {
         let isDeleted: boolean
 
         beforeEach(async () => {
-          jest.spyOn(userModel, 'findOneAndUpdate')
+          jest.spyOn(userModel, 'deleteMany')
           isDeleted = await userRepository.findOneAndDelete(filterQuery)
         })
 
         test('then it should call the userModel', () => {
-          expect(userModel.findOneAndDelete).toHaveBeenCalledWith(filterQuery)
+          expect(userModel.deleteMany).toHaveBeenCalledWith(filterQuery)
         })
 
         test('then it should return true if it is found and deleted', () => {
@@ -114,7 +116,7 @@ describe('UserRepository', () => {
           UserRepository,
           {
             provide: getModelToken(User.name),
-            useClass: UserModel
+            useValue: UserModel
           }
         ]
       }).compile()
