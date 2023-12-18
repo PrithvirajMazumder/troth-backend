@@ -1,8 +1,8 @@
 import { UserService } from '@/user/user.service'
 import { Test, TestingModule } from '@nestjs/testing'
 import { UserRepository } from '@/user/user.repository'
-import { User } from '../schemas/user.schema'
-import { userStub } from './stubs/user.stub'
+import { User } from '@/user/schemas/user.schema'
+import { userStub } from '@/user/tests/stubs/user.stub'
 import { Types } from 'mongoose'
 
 jest.mock('../user.repository')
@@ -52,6 +52,22 @@ describe('UserService', () => {
 
     it('should call userRepository', () => {
       expect(userRepository.findOne).toHaveBeenCalledWith({ _id: new Types.ObjectId(userId) })
+    })
+
+    it('should return a user', () => {
+      expect(user).toEqual(userStub())
+    })
+  })
+
+  describe('create', () => {
+    let user: User
+
+    beforeEach(async () => {
+      user = await userService.create(userStub())
+    })
+
+    it('should call userRepository', () => {
+      expect(userRepository.save).toHaveBeenCalledWith(userStub())
     })
 
     it('should return a user', () => {

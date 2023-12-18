@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common'
-import { UserRepository } from './user.repository'
-import { User } from './schemas/user.schema'
-import { Types } from 'mongoose'
+import { Injectable } from "@nestjs/common";
+import { UserRepository } from "./user.repository";
+import { User } from "./schemas/user.schema";
+import { Types } from "mongoose";
 
 @Injectable()
 export class UserService {
@@ -13,7 +13,10 @@ export class UserService {
 
   public async getById(userId: string): Promise<User> {
     const userObjectId = new Types.ObjectId(userId)
-
     return await this.userRepository.findOne({ _id: userObjectId })
+  }
+
+  public async create(user: User): Promise<User> {
+    return await this.userRepository.save(user)
   }
 }
