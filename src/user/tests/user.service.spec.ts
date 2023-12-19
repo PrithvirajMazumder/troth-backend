@@ -4,6 +4,8 @@ import { UserRepository } from '@/user/user.repository'
 import { User } from '@/user/schemas/user.schema'
 import { userStub } from '@/user/tests/stubs/user.stub'
 import { Types } from 'mongoose'
+import { instanceToPlain, plainToInstance } from 'class-transformer'
+import { CreateUserDto } from '@/user/dtos/createUser.dto'
 
 jest.mock('../user.repository')
 
@@ -63,6 +65,10 @@ describe('UserService', () => {
     let user: User
 
     beforeEach(async () => {
+      let dsadUser: CreateUserDto
+
+      console.log('testing: ', instanceToPlain(dsadUser as CreateUserDto))
+
       user = await userService.create(userStub())
     })
 

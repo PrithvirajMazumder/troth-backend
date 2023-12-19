@@ -1,7 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { UserRepository } from "./user.repository";
-import { User } from "./schemas/user.schema";
-import { Types } from "mongoose";
+import { Injectable } from '@nestjs/common'
+import { UserRepository } from './user.repository'
+import { User } from './schemas/user.schema'
+import { Types } from 'mongoose'
+import { CreateUserDto } from '@/user/dtos/createUser.dto'
+import { plainToInstance } from 'class-transformer'
 
 @Injectable()
 export class UserService {
@@ -16,7 +18,9 @@ export class UserService {
     return await this.userRepository.findOne({ _id: userObjectId })
   }
 
-  public async create(user: User): Promise<User> {
-    return await this.userRepository.save(user)
+  public async create(user: CreateUserDto): Promise<User> {
+    return await this.userRepository.save(
+      plainToInstance(CreateUserDto, user, { excludeExtraneousValues: true })
+    )
   }
 }
