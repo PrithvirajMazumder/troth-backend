@@ -7,7 +7,7 @@ import { createMock } from '@golevelup/ts-jest'
 import { Response } from 'express'
 import { Types } from 'mongoose'
 import { instanceToPlain } from 'class-transformer'
-import { CreateUserDto } from '@/user/dtos/createUser.dto'
+import { UserDto } from '@/user/dtos/user.dto'
 
 jest.mock('../user.service')
 describe('UserController', () => {
@@ -85,7 +85,7 @@ describe('UserController', () => {
     })
 
     it('should return new created user', () => {
-      expect(createdUser).toEqual(instanceToPlain(new CreateUserDto(newUser)))
+      expect(createdUser).toEqual(instanceToPlain(new UserDto(newUser)))
     })
   })
 })

@@ -1,26 +1,26 @@
 import { Injectable } from '@nestjs/common'
 import { UserRepository } from './user.repository'
-import { User } from './schemas/user.schema'
 import { Types } from 'mongoose'
-import { CreateUserDto } from '@/user/dtos/createUser.dto'
 import { plainToInstance } from 'class-transformer'
+import { UserDto } from '@/user/dtos/user.dto'
 
 @Injectable()
 export class UserService {
   public constructor(private readonly userRepository: UserRepository) {}
 
-  public async getAll(): Promise<Array<User>> {
+  public async getAll(): Promise<Array<UserDto>> {
     return await this.userRepository.find({})
   }
 
-  public async getById(userId: string): Promise<User> {
+  public async getById(userId: string): Promise<UserDto> {
     const userObjectId = new Types.ObjectId(userId)
-    return await this.userRepository.findOne({ _id: userObjectId })
+    return new UserDto((await this.userRepository.findOne({ _id: userObjectId })).toJSON())
   }
 
-  public async create(user: CreateUserDto): Promise<User> {
-    return await this.userRepository.save(
-      plainToInstance(CreateUserDto, user, { excludeExtraneousValues: true })
+  public async create(user: UserDto): Promise<UserDto> {
+    const newUser = await this.userRepository.save(
+      plainToInstance(UserDto, user, { excludeExtraneousValues: true })
     )
+    return new UserDto(newUser.toJSON())
   }
 }
