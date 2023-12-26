@@ -4,7 +4,7 @@ import * as process from 'process'
 dotenv.config()
 
 export const environment = {
-  nodeEnv: process.env.NODE_ENV,
+  nodeEnv: process.env.NODE_ENV as 'development' | 'production' | 'test' | 'provision',
   port: parseInt(process.env.PORT, 10) || 6700,
   mongo: {
     host: process.env.MONGO_HOST,
