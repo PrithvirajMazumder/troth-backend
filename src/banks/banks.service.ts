@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
-import { CreateBankInput } from './dto/create-bank.input'
-import { UpdateBankInput } from './dto/update-bank.input'
+import { CreateBankInput } from '@/banks/dto/create-bank.input'
+import { UpdateBankInput } from '@/banks/dto/update-bank.input'
 import { BanksRepository } from '@/banks/banks.repository'
 import { Types } from 'mongoose'
 
@@ -9,7 +9,13 @@ export class BanksService {
   public constructor(private readonly banksRepository: BanksRepository) {}
 
   public async create(createBankInput: CreateBankInput) {
-    return await this.banksRepository.save(createBankInput)
+    const { accountNumber } = createBankInput
+    const userId = new Types.ObjectId(createBankInput.userId)
+    const duplicateBanks = await this.banksRepository.find({ _id: userId, accountNumber })
+    if (!duplicateBanks.length) {
+      return await this.banksRepository.save(createBankInput)
+    }
+    throw new Error('Duplicate bank accounts found!')
   }
 
   public async findAll() {

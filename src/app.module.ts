@@ -2,17 +2,16 @@ import { environment } from '@/configs/environment'
 import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { AppController } from '@/app.controller'
 import { AppService } from '@/app.service'
-import { UserModule } from '@/user/user.module'
 import { LoggerMiddleware } from '@/middlewares/logger.middleware'
 import { DbModule } from '@/db/db.module'
 import { GraphQLModule } from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
-import { CompaniesModule } from './companies/companies.module';
-import { BanksModule } from './banks/banks.module';
+import { CompaniesModule } from '@/companies/companies.module';
+import { BanksModule } from '@/banks/banks.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    UserModule,
     DbModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -20,7 +19,8 @@ import { BanksModule } from './banks/banks.module';
       playground: environment.nodeEnv === 'development'
     }),
     CompaniesModule,
-    BanksModule
+    BanksModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService]

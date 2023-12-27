@@ -1,8 +1,8 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { BanksService } from './banks.service'
-import { Bank } from './entities/bank.entity'
-import { CreateBankInput } from './dto/create-bank.input'
-import { UpdateBankInput } from './dto/update-bank.input'
+import { BanksService } from '@/banks/banks.service'
+import { Bank } from '@/banks/entities/bank.entity'
+import { CreateBankInput } from '@/banks/dto/create-bank.input'
+import { UpdateBankInput } from '@/banks/dto/update-bank.input'
 
 @Resolver(() => Bank)
 export class BanksResolver {
