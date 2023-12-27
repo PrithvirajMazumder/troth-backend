@@ -7,9 +7,6 @@ export class User extends UserSchema {
   _id: string;
 
   @Field({nullable: true})
-  legalName: string
-
-  @Field({nullable: true})
   email: string
 
   @Field({nullable: true})
