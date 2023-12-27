@@ -7,7 +7,9 @@ import { environment } from '@/configs/environment'
     MongooseModule.forRoot(
       `mongodb://${environment.mongo.userName}:${environment.mongo.password}@${environment.mongo.host}:${environment.mongo.port}`,
       {
-        dbName: environment.mongo.name
+        dbName: environment.mongo.name,
+        autoIndex: true,
+        autoCreate: true
       }
     )
   ]
