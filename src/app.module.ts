@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { CompaniesModule } from '@/companies/companies.module';
 import { BanksModule } from '@/banks/banks.module';
 import { UsersModule } from './users/users.module';
+import { TaxesModule } from './taxes/taxes.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { UsersModule } from './users/users.module';
     }),
     CompaniesModule,
     BanksModule,
-    UsersModule
+    UsersModule,
+    TaxesModule
   ],
   controllers: [AppController],
   providers: [AppService]
