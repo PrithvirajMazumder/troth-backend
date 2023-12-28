@@ -6,6 +6,9 @@ import { Bank } from '@/banks/entities/bank.entity'
 @ObjectType()
 export class Company extends CompanySchema {
   @Field()
+  id: string
+
+  @Field()
   name: string
 
   @Field()

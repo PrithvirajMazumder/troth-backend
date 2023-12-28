@@ -10,6 +10,7 @@ import { CompaniesModule } from '@/companies/companies.module';
 import { BanksModule } from '@/banks/banks.module';
 import { UsersModule } from './users/users.module';
 import { TaxesModule } from './taxes/taxes.module';
+import { UomsModule } from './uoms/uoms.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { TaxesModule } from './taxes/taxes.module';
     CompaniesModule,
     BanksModule,
     UsersModule,
-    TaxesModule
+    TaxesModule,
+    UomsModule
   ],
   controllers: [AppController],
   providers: [AppService]
