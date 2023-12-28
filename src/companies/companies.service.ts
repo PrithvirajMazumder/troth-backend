@@ -1,26 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCompanyInput } from './dto/create-company.input';
-import { UpdateCompanyInput } from './dto/update-company.input';
+import { Injectable } from '@nestjs/common'
+import { CreateCompanyInput } from './dto/create-company.input'
+import { UpdateCompanyInput } from './dto/update-company.input'
+import { UsersRepository } from '@/users/users.repository'
+import { Types } from 'mongoose'
 
 @Injectable()
 export class CompaniesService {
-  create(createCompanyInput: CreateCompanyInput) {
-    return 'This action adds a new company';
+  public constructor(private readonly usersRepository: UsersRepository) {}
+
+  public create(createCompanyInput: CreateCompanyInput) {
+    return this.usersRepository.save(createCompanyInput)
   }
 
-  findAll() {
-    return `This action returns all companies`;
+  public findAll() {
+    return this.usersRepository.find({})
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  public findOne(id: string) {
+    const userId = new Types.ObjectId(id)
+    return this.usersRepository.findOne({ _id: userId })
   }
 
-  update(id: number, updateCompanyInput: UpdateCompanyInput) {
-    return `This action updates a #${id} company`;
+  public update(id: string, updateCompanyInput: UpdateCompanyInput) {
+    const userId = new Types.ObjectId(id)
+    return this.usersRepository.findOneAndUpdate({ _id: userId }, updateCompanyInput)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} company`;
+  public remove(id: string) {
+    const userId = new Types.ObjectId(id)
+    return this.usersRepository.findOneAndDelete({ _id: userId })
   }
 }
