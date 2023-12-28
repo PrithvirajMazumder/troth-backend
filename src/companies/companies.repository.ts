@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { EntityRepository } from '@/db/entity.repository'
-import { Company, CompanyDocument } from '@/companies/schemas/company'
+import { Company, CompanyDocument } from '@/companies/schemas/company.schema'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 

@@ -1,15 +1,31 @@
-import { Field, InputType, OmitType } from '@nestjs/graphql'
-import { Company } from '@/companies/entities/company.entity'
+import { Field, InputType } from '@nestjs/graphql'
 
 @InputType()
-export class CreateCompanyInput extends OmitType(Company, [
-  'totalGrossInvoiceAmount',
-  'totalGrossChallanAmount',
-  'totalNetInvoiceAmount',
-  'totalNetChallanAmount',
-  'user',
-  'bank'
-]) {
+export class CreateCompanyInput {
+  @Field()
+  name: string
+
+  @Field()
+  legalName: string
+
+  @Field()
+  city: string
+
+  @Field()
+  state: string
+
+  @Field()
+  addressLine1: string
+
+  @Field({ nullable: true })
+  addressLine2: string
+
+  @Field()
+  zipCode: number
+
+  @Field()
+  gstin: string
+
   @Field()
   userId: string
 

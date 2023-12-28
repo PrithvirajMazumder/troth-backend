@@ -12,9 +12,11 @@ export class BanksService {
     const { accountNumber } = createBankInput
     const userId = new Types.ObjectId(createBankInput.userId)
     const duplicateBanks = await this.banksRepository.find({ _id: userId, accountNumber })
+
     if (!duplicateBanks.length) {
       return await this.banksRepository.save(createBankInput)
     }
+
     throw new Error('Duplicate bank accounts found!')
   }
 

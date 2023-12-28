@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql'
 import { Bank as BankSchema } from '@/banks/schemas/bank.schema'
+import { User } from '@/users/entities/user.entity'
 
 @ObjectType()
 export class Bank extends BankSchema {
@@ -17,4 +18,7 @@ export class Bank extends BankSchema {
 
   @Field({ nullable: false })
   ifsc: string
+
+  @Field(() => User)
+  user: User
 }

@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql'
-import { Company as CompanySchema } from '@/companies/schemas/company'
+import { Company as CompanySchema } from '@/companies/schemas/company.schema'
 import { User } from '@/users/entities/user.entity'
 import { Bank } from '@/banks/entities/bank.entity'
 

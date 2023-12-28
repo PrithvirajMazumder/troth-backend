@@ -19,7 +19,7 @@ export class Bank {
   branch: string
 
   @Prop({ type: Types.ObjectId, required: true, ref: User.name })
-  userId: User
+  userId: string
 }
 
 export const BankSchema = SchemaFactory.createForClass(Bank)
