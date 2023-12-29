@@ -16,6 +16,10 @@ export class ItemsService {
     return this.itemsRepository.find({ companyId })
   }
 
+  findItemsByIds(itemIds: Array<string>) {
+    return this.itemsRepository.find({ _id: { $in: itemIds } })
+  }
+
   findOne(id: string) {
     const itemId = new Types.ObjectId(id)
     return this.itemsRepository.findOne({ _id: itemId })

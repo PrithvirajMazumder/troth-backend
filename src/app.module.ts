@@ -13,6 +13,8 @@ import { TaxesModule } from './taxes/taxes.module';
 import { UomsModule } from './uoms/uoms.module';
 import { ItemsModule } from './items/items.module';
 import { PartiesModule } from './parties/parties.module';
+import { InvoicesModule } from './invoices/invoices.module';
+import { ChallansModule } from './challans/challans.module';
 
 @Module({
   imports: [
@@ -28,7 +30,9 @@ import { PartiesModule } from './parties/parties.module';
     TaxesModule,
     UomsModule,
     ItemsModule,
-    PartiesModule
+    PartiesModule,
+    InvoicesModule,
+    ChallansModule
   ],
   controllers: [AppController],
   providers: [AppService]
