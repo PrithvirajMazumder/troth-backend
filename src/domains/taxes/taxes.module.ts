@@ -5,8 +5,11 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { Tax, TaxSchema } from '@/domains/taxes/schemas/tax.schema'
 import { TaxesRepository } from '@/domains/taxes/taxes.repository'
 
+const model = MongooseModule.forFeature([{ name: Tax.name, schema: TaxSchema }])
+
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Tax.name, schema: TaxSchema }])],
-  providers: [TaxesResolver, TaxesService, TaxesRepository]
+  imports: [model],
+  providers: [TaxesResolver, TaxesService, TaxesRepository],
+  exports: [model, TaxesService, TaxesRepository]
 })
 export class TaxesModule {}

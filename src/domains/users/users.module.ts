@@ -5,8 +5,11 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { User, UserSchema } from '@/domains/users/schemas/user.schema'
 import { UsersRepository } from '@/domains/users/users.repository'
 
+const dbModule = MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])
+
 @Module({
-  imports: [MongooseModule.forFeature([{ name: User.name, schema: UserSchema }])],
-  providers: [UsersResolver, UsersService, UsersRepository]
+  imports: [dbModule],
+  providers: [UsersResolver, UsersService, UsersRepository],
+  exports: [dbModule, UsersService, UsersRepository]
 })
 export class UsersModule {}

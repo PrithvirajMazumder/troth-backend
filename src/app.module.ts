@@ -15,6 +15,7 @@ import { ItemsModule } from '@/domains/items/items.module';
 import { PartiesModule } from '@/domains/parties/parties.module';
 import { InvoicesModule } from '@/domains/invoices/invoices.module';
 import { ChallansModule } from '@/domains/challans/challans.module';
+import { AuthModule } from './domains/auth/auth.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { ChallansModule } from '@/domains/challans/challans.module';
     ItemsModule,
     PartiesModule,
     InvoicesModule,
-    ChallansModule
+    ChallansModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService]

@@ -4,20 +4,13 @@ import { BanksResolver } from '@/domains/banks/banks.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
 import { Bank, BankSchema } from '@/domains/banks/schemas/bank.schema'
 import { BanksRepository } from '@/domains/banks/banks.repository'
-import { UsersService } from '@/domains/users/users.service'
-import { UsersRepository } from '@/domains/users/users.repository'
-import { User, UserSchema } from '@/domains/users/schemas/user.schema'
+import { UsersModule } from '@/domains/users/users.module'
+
+const model = MongooseModule.forFeature([{ name: Bank.name, schema: BankSchema }])
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      { name: Bank.name, schema: BankSchema },
-      {
-        name: User.name,
-        schema: UserSchema
-      }
-    ])
-  ],
-  providers: [BanksResolver, BanksService, BanksRepository, UsersService, UsersRepository]
+  imports: [UsersModule, model],
+  providers: [BanksResolver, BanksService, BanksRepository],
+  exports: [model, BanksService, BanksRepository]
 })
 export class BanksModule {}

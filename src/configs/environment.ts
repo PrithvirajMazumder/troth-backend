@@ -12,5 +12,8 @@ export const environment = {
     name: process.env.MONGO_DATABASE_NAME,
     userName: process.env.MONGO_USERNAME,
     password: process.env.MONGO_PASSWORD
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET
   }
 }
