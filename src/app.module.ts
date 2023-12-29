@@ -1,12 +1,39 @@
+import { environment } from '@/configs/environment'
 import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { AppController } from '@/app.controller'
 import { AppService } from '@/app.service'
-import { UserModule } from '@/user/user.module'
 import { LoggerMiddleware } from '@/middlewares/logger.middleware'
 import { DbModule } from '@/db/db.module'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { CompaniesModule } from '@/companies/companies.module';
+import { BanksModule } from '@/banks/banks.module';
+import { UsersModule } from './users/users.module';
+import { TaxesModule } from './taxes/taxes.module';
+import { UomsModule } from './uoms/uoms.module';
+import { ItemsModule } from './items/items.module';
+import { PartiesModule } from './parties/parties.module';
+import { InvoicesModule } from './invoices/invoices.module';
+import { ChallansModule } from './challans/challans.module';
 
 @Module({
-  imports: [UserModule, DbModule],
+  imports: [
+    DbModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true,
+      playground: environment.nodeEnv === 'development'
+    }),
+    CompaniesModule,
+    BanksModule,
+    UsersModule,
+    TaxesModule,
+    UomsModule,
+    ItemsModule,
+    PartiesModule,
+    InvoicesModule,
+    ChallansModule
+  ],
   controllers: [AppController],
   providers: [AppService]
 })
