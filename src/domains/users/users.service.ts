@@ -3,10 +3,15 @@ import { CreateUserInput } from '@/domains/users/dto/create-user.input'
 import { UpdateUserInput } from '@/domains/users/dto/update-user.input'
 import { UsersRepository } from '@/domains/users/users.repository'
 import { Types } from 'mongoose'
+import { User } from '@/domains/users/schemas/user.schema'
 
 @Injectable()
 export class UsersService {
   public constructor(private readonly usersRepository: UsersRepository) {}
+
+  public getUserByEmail(email: string): User | null {
+    return this.usersRepository.findOne({ email })
+  }
 
   public create(createUserInput: CreateUserInput) {
     return this.usersRepository.save(createUserInput)
