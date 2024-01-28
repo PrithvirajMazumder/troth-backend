@@ -17,17 +17,21 @@ export class CompaniesService {
   }
 
   public findOne(id: string) {
-    const userId = new Types.ObjectId(id)
-    return this.companiesRepository.findOne({ _id: userId })
+    const companyId = new Types.ObjectId(id)
+    return this.companiesRepository.findOne({ _id: companyId })
   }
 
   public update(id: string, updateCompanyInput: UpdateCompanyInput) {
-    const userId = new Types.ObjectId(id)
-    return this.companiesRepository.findOneAndUpdate({ _id: userId }, updateCompanyInput)
+    const companyId = new Types.ObjectId(id)
+    return this.companiesRepository.findOneAndUpdate({ _id: companyId }, updateCompanyInput)
   }
 
   public remove(id: string) {
-    const userId = new Types.ObjectId(id)
-    return this.companiesRepository.findOneAndDelete({ _id: userId })
+    const companyId = new Types.ObjectId(id)
+    return this.companiesRepository.findOneAndDelete({ _id: companyId })
+  }
+
+  public findAllByUserId(userId: string) {
+    return this.companiesRepository.find({ userId })
   }
 }

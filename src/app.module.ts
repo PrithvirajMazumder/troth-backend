@@ -15,13 +15,14 @@ import { ItemsModule } from '@/domains/items/items.module';
 import { PartiesModule } from '@/domains/parties/parties.module';
 import { InvoicesModule } from '@/domains/invoices/invoices.module';
 import { ChallansModule } from '@/domains/challans/challans.module';
+import { join } from 'path'
 
 @Module({
   imports: [
     DbModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: environment.nodeEnv === 'development'
     }),
     CompaniesModule,

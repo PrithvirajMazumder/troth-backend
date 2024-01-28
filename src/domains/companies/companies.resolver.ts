@@ -22,8 +22,8 @@ export class CompaniesResolver {
   }
 
   @Query(() => [Company], { name: 'companies' })
-  async findAll() {
-    return await this.companiesService.findAll()
+  async findAll(@Args('userId') userId: string) {
+    return await this.companiesService.findAllByUserId(userId)
   }
 
   @Query(() => Company, { name: 'company' })
