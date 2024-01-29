@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql'
+import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { PartiesService } from './parties.service'
 import { Party } from './entities/party.entity'
 import { CreatePartyInput } from './dto/create-party.input'

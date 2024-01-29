@@ -16,6 +16,9 @@ import { CompaniesRepository } from '@/domains/companies/companies.repository'
 import { ItemsService } from '@/domains/items/items.service'
 import { ItemsRepository } from '@/domains/items/items.repository'
 import { Item, ItemSchema } from '@/domains/items/schemas/item.schema'
+import { PartiesService } from '@/domains/parties/parties.service'
+import { PartiesRepository } from '@/domains/parties/parties.repository'
+import { Party, PartySchema } from '@/domains/parties/schemas/party.schema'
 
 @Module({
   imports: [
@@ -24,7 +27,8 @@ import { Item, ItemSchema } from '@/domains/items/schemas/item.schema'
       { name: Bank.name, schema: BankSchema },
       { name: Tax.name, schema: TaxSchema },
       { name: Company.name, schema: CompanySchema },
-      { name: Item.name, schema: ItemSchema }
+      { name: Item.name, schema: ItemSchema },
+      { name: Party.name, schema: PartySchema }
     ])
   ],
   providers: [
@@ -38,7 +42,9 @@ import { Item, ItemSchema } from '@/domains/items/schemas/item.schema'
     CompaniesService,
     CompaniesRepository,
     ItemsService,
-    ItemsRepository
+    ItemsRepository,
+    PartiesService,
+    PartiesRepository
   ]
 })
 export class InvoicesModule {}

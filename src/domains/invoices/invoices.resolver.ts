@@ -10,6 +10,8 @@ import { BanksService } from '@/domains/banks/banks.service'
 import { TaxesService } from '@/domains/taxes/taxes.service'
 import { Bank } from '@/domains/banks/entities/bank.entity'
 import { ItemsService } from '@/domains/items/items.service'
+import { PartiesService } from '@/domains/parties/parties.service'
+import { Party } from '@/domains/parties/entities/party.entity'
 
 @Resolver(() => Invoice)
 export class InvoicesResolver {
@@ -18,7 +20,8 @@ export class InvoicesResolver {
     private readonly companiesService: CompaniesService,
     private readonly banksService: BanksService,
     private readonly taxesService: TaxesService,
-    private readonly itemsService: ItemsService
+    private readonly itemsService: ItemsService,
+    private readonly partiesService: PartiesService
   ) {}
 
   @Mutation(() => Invoice)
@@ -50,6 +53,12 @@ export class InvoicesResolver {
   getCompany(@Parent() invoice: Invoice) {
     const { companyId } = invoice
     return this.companiesService.findOne(companyId)
+  }
+
+  @ResolveField('party', () => Party)
+  getParty(@Parent() invoice: Invoice) {
+    const { partyId } = invoice
+    return this.partiesService.findOne(partyId)
   }
 
   @ResolveField('tax', () => Tax)
