@@ -19,6 +19,6 @@ export class Bank extends BankSchema {
   @Field({ nullable: false })
   ifsc: string
 
-  @Field(() => User)
-  user: User
+  @Field(() => User, {nullable: true})
+  user?: User
 }

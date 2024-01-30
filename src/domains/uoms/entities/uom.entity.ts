@@ -4,8 +4,8 @@ import { Company } from '@/domains/companies/entities/company.entity'
 
 @ObjectType()
 export class Uom extends UomSchema {
-  @Field()
-  id: string
+  @Field({nullable: true})
+  id?: string
 
   @Field()
   abbreviation: string
@@ -13,6 +13,6 @@ export class Uom extends UomSchema {
   @Field()
   name: string
 
-  @Field(() => Company)
-  company: Company
+  @Field(() => Company, {nullable: true})
+  company?: Company
 }

@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql'
+import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql'
 import {
   Invoice as InvoiceSchema,
   InvoiceItem as InvoiceItemSchema
@@ -8,14 +8,19 @@ import { Company } from '@/domains/companies/entities/company.entity'
 import { Tax } from '@/domains/taxes/entities/tax.entity'
 import { Bank } from '@/domains/banks/entities/bank.entity'
 import { Item } from '@/domains/items/entities/item.entity'
+import { InvoiceStatus } from '@/domains/invoices/constants/allowedInvoiceStatus'
+
+registerEnumType(InvoiceStatus, {
+  name: 'InvoiceStatus'
+})
 
 @ObjectType()
 export class InvoiceItem extends InvoiceItemSchema {
   @Field(() => Int)
   quantity: number
 
-  @Field(() => Item)
-  item: Item
+  @Field(() => Item, {nullable: true})
+  item?: Item
 
   @Field(() => Int)
   price: number
@@ -26,24 +31,32 @@ export class Invoice extends InvoiceSchema {
   @Field()
   id: string
 
+  @Field({ nullable: false })
+  date: string
+
   @Field(() => [InvoiceItem])
   invoiceItems: Array<InvoiceItem>
 
   @Field(() => Party)
   party: Party
 
-  @Field()
-  vehicleNumber: string
+  @Field({ nullable: true })
+  vehicleNumber?: string
 
-  @Field(() => Company)
-  company: Company
+  @Field(() => Company, {
+    nullable: true
+  })
+  company?: Company
 
-  @Field(() => Tax)
-  tax: Tax
+  @Field(() => Tax, { nullable: true })
+  tax?: Tax
 
   @Field()
   no: string
 
-  @Field(() => Bank)
-  bank: Bank
+  @Field(() => Bank, { nullable: true })
+  bank?: Bank
+
+  @Field(() => InvoiceStatus)
+  status: InvoiceStatus
 }

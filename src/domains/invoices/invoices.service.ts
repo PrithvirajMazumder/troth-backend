@@ -3,13 +3,14 @@ import { CreateInvoiceInput } from '@/domains/invoices/dto/create-invoice.input'
 import { UpdateInvoiceInput } from '@/domains/invoices/dto/update-invoice.input'
 import { InvoicesRepository } from '@/domains/invoices/invoices.repository'
 import { Types } from 'mongoose'
+import { InvoiceStatus } from '@/domains/invoices/constants/allowedInvoiceStatus'
 
 @Injectable()
 export class InvoicesService {
   constructor(private readonly invoicesRepository: InvoicesRepository) {}
 
   create(createInvoiceInput: CreateInvoiceInput) {
-    return this.invoicesRepository.save(createInvoiceInput)
+    return this.invoicesRepository.save({ ...createInvoiceInput, status: InvoiceStatus.Draft })
   }
 
   findAllByCompanyId(companyId: string) {

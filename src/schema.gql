@@ -15,7 +15,7 @@ type Bank {
   branch: String!
   name: String!
   ifsc: String!
-  user: User!
+  user: User
 }
 
 type Company {
@@ -37,55 +37,63 @@ type Company {
 }
 
 type Tax {
-  id: String!
+  id: String
   cgst: Int!
   sgst: Int!
 }
 
 type Uom {
-  id: String!
+  id: String
   abbreviation: String!
   name: String!
-  company: Company!
+  company: Company
 }
 
 type Item {
   id: String!
   name: String!
   hsn: Int
-  company: Company!
+  company: Company
   tax: Tax!
   uom: Uom!
 }
 
 type Party {
-  id: String!
-  addressLine1: String!
+  id: String
+  addressLine1: String
   addressLine2: String
-  zipCode: Int!
-  name: String!
-  state: String!
-  gstin: String!
-  city: String!
-  partyItemIds: [String!]!
-  company: Company!
+  zipCode: Int
+  name: String
+  state: String
+  gstin: String
+  city: String
+  partyItemIds: [String!]
+  company: Company
 }
 
 type InvoiceItem {
   quantity: Int!
-  item: Item!
+  item: Item
   price: Int!
 }
 
 type Invoice {
   id: String!
+  date: String!
   invoiceItems: [InvoiceItem!]!
   party: Party!
-  vehicleNumber: String!
-  company: Company!
-  tax: Tax!
+  vehicleNumber: String
+  company: Company
+  tax: Tax
   no: String!
-  bank: Bank!
+  bank: Bank
+  status: InvoiceStatus!
+}
+
+enum InvoiceStatus {
+  Draft
+  Confirmed
+  Paid
 }
 
 type Challan {
@@ -274,6 +282,7 @@ input CreateInvoiceInput {
   invoiceItems: [CreateInvoiceItemInput!]!
   partyId: String!
   vehicleNumber: String!
+  date: String!
   companyId: String!
   taxId: String!
   no: String!
@@ -290,10 +299,12 @@ input UpdateInvoiceInput {
   invoiceItems: [CreateInvoiceItemInput!]
   partyId: String
   vehicleNumber: String
+  date: String
   taxId: String
   no: String
   bankId: String
   id: String!
+  status: InvoiceStatus
 }
 
 input CreateChallanInput {

@@ -49,7 +49,7 @@ export class InvoicesResolver {
     return this.invoicesService.remove(id)
   }
 
-  @ResolveField('company', () => Company)
+  @ResolveField('company', () => Company, { nullable: true })
   getCompany(@Parent() invoice: Invoice) {
     const { companyId } = invoice
     return this.companiesService.findOne(companyId)
@@ -61,13 +61,13 @@ export class InvoicesResolver {
     return this.partiesService.findOne(partyId)
   }
 
-  @ResolveField('tax', () => Tax)
+  @ResolveField('tax', () => Tax, { nullable: true })
   getTax(@Parent() invoice: Invoice) {
     const { taxId } = invoice
     return this.taxesService.findOne(taxId)
   }
 
-  @ResolveField('bank', () => Bank)
+  @ResolveField('bank', () => Bank, {nullable: true})
   getBank(@Parent() invoice: Invoice) {
     const { bankId } = invoice
     return this.banksService.findOne(bankId)

@@ -43,7 +43,7 @@ export class UomsResolver {
     return this.uomsService.remove(id)
   }
 
-  @ResolveField('company', () => Company)
+  @ResolveField('company', () => Company, { nullable: true })
   getCompany(@Parent() uom: Uom) {
     const { companyId } = uom
     return this.companiesService.findOne(companyId)

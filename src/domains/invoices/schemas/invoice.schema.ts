@@ -3,6 +3,7 @@ import { Document, Types } from 'mongoose'
 import { Item } from '@/domains/items/schemas/item.schema'
 import { Tax } from '@/domains/taxes/schemas/tax.schema'
 import { Bank } from '@/domains/banks/schemas/bank.schema'
+import { InvoiceStatusArr } from '@/domains/invoices/constants/allowedInvoiceStatus'
 
 @Schema()
 export class InvoiceItem {
@@ -36,10 +37,20 @@ export class Invoice {
   taxId: string
 
   @Prop({ required: true })
-  vehicleNumber: string
+  vehicleNumber?: string
+
+  @Prop({ required: true })
+  date: string
 
   @Prop({ required: true, type: Types.ObjectId, ref: Bank.name })
   bankId: string
+
+  @Prop({
+    type: String,
+    required: true,
+    enum: InvoiceStatusArr
+  })
+  status: string
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice)

@@ -38,7 +38,7 @@ export class PartiesResolver {
     return this.partiesService.remove(id)
   }
 
-  @ResolveField('company', () => Company)
+  @ResolveField('company', () => Company, {nullable: true})
   getCompany(@Parent() party: Party) {
     const { companyId } = party
     return this.companiesService.findOne(companyId)

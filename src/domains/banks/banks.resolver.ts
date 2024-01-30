@@ -38,7 +38,7 @@ export class BanksResolver {
     return this.banksService.remove(id)
   }
 
-  @ResolveField('user', () => User)
+  @ResolveField('user', () => User, { nullable: true })
   getUser(@Parent() bank: Bank) {
     const { userId } = bank
     return this.usersService.findOne(userId)

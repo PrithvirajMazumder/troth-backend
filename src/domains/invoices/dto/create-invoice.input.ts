@@ -1,4 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql'
+import { IsDateString, IsNotEmpty } from 'class-validator'
 
 @InputType()
 export class CreateInvoiceItemInput {
@@ -22,6 +23,11 @@ export class CreateInvoiceInput {
 
   @Field()
   vehicleNumber: string
+
+  @IsNotEmpty()
+  @IsDateString()
+  @Field({ nullable: false })
+  date: string
 
   @Field()
   companyId: string

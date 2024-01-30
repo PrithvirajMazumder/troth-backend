@@ -44,9 +44,9 @@ export class Company extends CompanySchema {
   @Field(() => Int, { nullable: true })
   totalNetInvoiceAmount: number
 
-  @Field(() => User)
-  user: User
+  @Field(() => User, { nullable: true })
+  user!: User
 
-  @Field(() => Bank)
-  bank: Bank
+  @Field(() => Bank, { nullable: true })
+  bank!: Bank
 }

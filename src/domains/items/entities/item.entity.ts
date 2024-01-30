@@ -15,8 +15,8 @@ export class Item extends ItemSchema {
   @Field(() => Int, { nullable: true })
   hsn: number
 
-  @Field(() => Company)
-  company: Company
+  @Field(() => Company, {nullable: true})
+  company?: Company
 
   @Field(() => Tax)
   tax: Tax

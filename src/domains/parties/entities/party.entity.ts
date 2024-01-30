@@ -1,36 +1,36 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { ObjectType, Field, Int, PartialType } from '@nestjs/graphql'
 import { Party as PartySchema } from '@/domains/parties/schemas/party.schema'
 import { Company } from '@/domains/companies/entities/company.entity'
 
 @ObjectType()
 export class Party extends PartySchema {
-  @Field()
+  @Field({nullable: true})
   id: string
 
-  @Field()
+  @Field({nullable: true})
   addressLine1: string
 
   @Field({ nullable: true })
-  addressLine2?: string
+  addressLine2: string
 
-  @Field(() => Int)
+  @Field(() => Int, {nullable: true})
   zipCode: number
 
-  @Field()
+  @Field({nullable: true})
   name: string
 
-  @Field()
+  @Field({nullable: true})
   state: string
 
-  @Field()
+  @Field({nullable: true})
   gstin: string
 
-  @Field()
+  @Field({nullable: true})
   city: string
 
-  @Field(() => [String])
+  @Field(() => [String], {nullable: true})
   partyItemIds: Array<string>
 
-  @Field(() => Company)
+  @Field(() => Company, { nullable: true })
   company: Company
 }

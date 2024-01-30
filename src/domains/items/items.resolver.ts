@@ -44,7 +44,7 @@ export class ItemsResolver {
     return this.itemsService.remove(id)
   }
 
-  @ResolveField('company', () => Company)
+  @ResolveField('company', () => Company, { nullable: true })
   getCompany(@Parent() item: Item) {
     const { companyId } = item
     return this.companiesService.findOne(companyId)
