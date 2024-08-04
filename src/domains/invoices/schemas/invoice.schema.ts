@@ -36,7 +36,7 @@ export class Invoice {
   @Prop({ required: true, type: Types.ObjectId, ref: Tax.name })
   taxId: string
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   vehicleNumber?: string
 
   @Prop({ required: true })
