@@ -114,13 +114,20 @@ type Query {
   uom(id: String!): Uom!
   companyUoms(companyId: String!): [Uom!]!
   items(companyId: String!): [Item!]!
+  itemsByIds(items: StringArrayInput!): [Item!]!
   item(id: String!): Item!
   parties(companyId: String!): [Party!]!
   party(id: String!): Party!
   invoices(companyId: String!): [Invoice!]!
   invoice(id: String!): Invoice!
+  invoiceByNo(no: String!): Invoice!
+  suggestedNextInvoiceNumber: Float!
   challans: [Challan!]!
   challan(id: Int!): Challan!
+}
+
+input StringArrayInput {
+  ids: [String!]!
 }
 
 type Mutation {

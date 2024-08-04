@@ -1,4 +1,4 @@
-import { Args, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
+import { Args, Field, InputType, Mutation, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql'
 import { ItemsService } from '@/domains/items/items.service'
 import { Item } from '@/domains/items/entities/item.entity'
 import { CreateItemInput } from '@/domains/items/dto/create-item.input'
@@ -9,6 +9,12 @@ import { TaxesService } from '@/domains/taxes/taxes.service'
 import { Company } from '@/domains/companies/entities/company.entity'
 import { Tax } from '@/domains/taxes/entities/tax.entity'
 import { Uom } from '@/domains/uoms/entities/uom.entity'
+
+@InputType()
+export class StringArrayInput {
+  @Field(() => [String])
+  ids: string[];
+}
 
 @Resolver(() => Item)
 export class ItemsResolver {
@@ -27,6 +33,11 @@ export class ItemsResolver {
   @Query(() => [Item], { name: 'items' })
   findAllByCompanyId(@Args('companyId') companyId: string) {
     return this.itemsService.findAllByCompanyId(companyId)
+  }
+
+  @Query(() => [Item], { name: 'itemsByIds' })
+  findAllByItemIds(@Args('items') items: StringArrayInput) {
+    return this.itemsService.findItemsByIds(items.ids)
   }
 
   @Query(() => Item, { name: 'item' })

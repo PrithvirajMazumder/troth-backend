@@ -39,6 +39,16 @@ export class InvoicesResolver {
     return this.invoicesService.findOne(id)
   }
 
+  @Query(() => Invoice, { name: 'invoiceByNo' })
+  findOneByNo(@Args('no') no: string) {
+    return this.invoicesService.findInvoiceWithNo(no)
+  }
+
+  @Query(() => Number, { name: 'suggestedNextInvoiceNumber' })
+  getNextIncrementedInvoiceNumber() {
+    return this.invoicesService.getNextIncrementedInvoiceNumber()
+  }
+
   @Mutation(() => Invoice)
   updateInvoice(@Args('updateInvoiceInput') updateInvoiceInput: UpdateInvoiceInput) {
     return this.invoicesService.update(updateInvoiceInput.id, updateInvoiceInput)
@@ -67,7 +77,7 @@ export class InvoicesResolver {
     return this.taxesService.findOne(taxId)
   }
 
-  @ResolveField('bank', () => Bank, {nullable: true})
+  @ResolveField('bank', () => Bank, { nullable: true })
   getBank(@Parent() invoice: Invoice) {
     const { bankId } = invoice
     return this.banksService.findOne(bankId)

@@ -31,4 +31,14 @@ export class InvoicesService {
     const invoiceId = new Types.ObjectId(id)
     return this.invoicesRepository.findOneAndDelete(invoiceId)
   }
+
+  async getNextIncrementedInvoiceNumber() {
+    const latestInvoice = await this.invoicesRepository.findOne({}).sort({ no: -1 }).limit(1)
+
+    return parseInt(latestInvoice?.no) + 1
+  }
+
+  findInvoiceWithNo(no: string) {
+    return this.invoicesRepository.findOne({ no })
+  }
 }

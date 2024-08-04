@@ -1,0 +1,514 @@
+{
+  "version": "6.0",
+  "nxVersion": "18.0.4",
+  "deps": {
+    "@apollo/server": "^4.9.5",
+    "@nestjs/apollo": "^12.0.11",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/graphql": "^12.0.11",
+    "@nestjs/mongoose": "^10.0.2",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^7.1.17",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "dotenv": "^16.3.1",
+    "graphql": "^16.8.1",
+    "mongoose": "^8.0.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1",
+    "@golevelup/ts-jest": "^0.4.0",
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.0.0",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^3.0.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
+  },
+  "pathMappings": {
+    "@/*": [
+      "src/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".env.example",
+        "hash": "938531612251487733"
+      },
+      {
+        "file": ".eslintignore",
+        "hash": "17345610570594973904"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "8727020656645858942"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "2317749643406561000"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "13038824011749783485"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "9221470345828783110"
+      },
+      {
+        "file": "README.md",
+        "hash": "8286378509751487236"
+      },
+      {
+        "file": "nest-cli.json",
+        "hash": "789240945379598733"
+      },
+      {
+        "file": "package.json",
+        "hash": "2503737329377671976"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "5577410284309460045"
+      },
+      {
+        "file": "src/app.controller.spec.ts",
+        "hash": "23156248396546571"
+      },
+      {
+        "file": "src/app.controller.ts",
+        "hash": "17349966645389663884"
+      },
+      {
+        "file": "src/app.module.ts",
+        "hash": "1390683770586544110"
+      },
+      {
+        "file": "src/app.service.ts",
+        "hash": "3178715459133400880"
+      },
+      {
+        "file": "src/configs/environment.ts",
+        "hash": "14464284687720852842"
+      },
+      {
+        "file": "src/db/db.module.ts",
+        "hash": "14312658963978400782"
+      },
+      {
+        "file": "src/db/entity.repository.ts",
+        "hash": "6654111564428742008"
+      },
+      {
+        "file": "src/db/tests/support/mock.model.ts",
+        "hash": "11345171614895625757"
+      },
+      {
+        "file": "src/domains/banks/banks.module.ts",
+        "hash": "15305610279837069133"
+      },
+      {
+        "file": "src/domains/banks/banks.repository.ts",
+        "hash": "6622276246106121813"
+      },
+      {
+        "file": "src/domains/banks/banks.resolver.ts",
+        "hash": "9286641276219795737"
+      },
+      {
+        "file": "src/domains/banks/banks.service.ts",
+        "hash": "14755790356024655155"
+      },
+      {
+        "file": "src/domains/banks/dto/create-bank.input.ts",
+        "hash": "6845220429910350212"
+      },
+      {
+        "file": "src/domains/banks/dto/update-bank.input.ts",
+        "hash": "13703305846819146975"
+      },
+      {
+        "file": "src/domains/banks/entities/bank.entity.ts",
+        "hash": "3411867158280086183"
+      },
+      {
+        "file": "src/domains/banks/schemas/bank.schema.ts",
+        "hash": "12232772598888925027"
+      },
+      {
+        "file": "src/domains/banks/tests/banks.resolver.spec.ts",
+        "hash": "2026974653334822611"
+      },
+      {
+        "file": "src/domains/banks/tests/banks.service.spec.ts",
+        "hash": "10585128203562226854"
+      },
+      {
+        "file": "src/domains/challans/challans.module.ts",
+        "hash": "2386418729029631089"
+      },
+      {
+        "file": "src/domains/challans/challans.resolver.spec.ts",
+        "hash": "11699701212485040510"
+      },
+      {
+        "file": "src/domains/challans/challans.resolver.ts",
+        "hash": "15218810759260429584"
+      },
+      {
+        "file": "src/domains/challans/challans.service.spec.ts",
+        "hash": "11234290566631313237"
+      },
+      {
+        "file": "src/domains/challans/challans.service.ts",
+        "hash": "7400792500606738840"
+      },
+      {
+        "file": "src/domains/challans/dto/create-challan.input.ts",
+        "hash": "14925847700328291161"
+      },
+      {
+        "file": "src/domains/challans/dto/update-challan.input.ts",
+        "hash": "17756891419542576674"
+      },
+      {
+        "file": "src/domains/challans/entities/challan.entity.ts",
+        "hash": "8568028055365163661"
+      },
+      {
+        "file": "src/domains/companies/companies.module.ts",
+        "hash": "8382962565363997843"
+      },
+      {
+        "file": "src/domains/companies/companies.repository.ts",
+        "hash": "210133124604333450"
+      },
+      {
+        "file": "src/domains/companies/companies.resolver.ts",
+        "hash": "7761382766295018373"
+      },
+      {
+        "file": "src/domains/companies/companies.schema.ts",
+        "hash": "16980291273666479047"
+      },
+      {
+        "file": "src/domains/companies/companies.service.ts",
+        "hash": "8153552675651183845"
+      },
+      {
+        "file": "src/domains/companies/dto/create-company.input.ts",
+        "hash": "11816833209070556549"
+      },
+      {
+        "file": "src/domains/companies/dto/update-company.input.ts",
+        "hash": "12637886794247984482"
+      },
+      {
+        "file": "src/domains/companies/entities/company.entity.ts",
+        "hash": "9104806738867423520"
+      },
+      {
+        "file": "src/domains/companies/schemas/company.schema.ts",
+        "hash": "7471767215672240311"
+      },
+      {
+        "file": "src/domains/companies/tests/companies.resolver.spec.ts",
+        "hash": "5585709316242526638"
+      },
+      {
+        "file": "src/domains/companies/tests/companies.service.spec.ts",
+        "hash": "3531023722231914273"
+      },
+      {
+        "file": "src/domains/invoices/constants/allowedInvoiceStatus.ts",
+        "hash": "17933984637869436369"
+      },
+      {
+        "file": "src/domains/invoices/dto/create-invoice.input.ts",
+        "hash": "4572113090196303123"
+      },
+      {
+        "file": "src/domains/invoices/dto/update-invoice.input.ts",
+        "hash": "11872143027858487140"
+      },
+      {
+        "file": "src/domains/invoices/entities/invoice.entity.ts",
+        "hash": "8475991885258854950"
+      },
+      {
+        "file": "src/domains/invoices/invoices.module.ts",
+        "hash": "13330199430869943711"
+      },
+      {
+        "file": "src/domains/invoices/invoices.repository.ts",
+        "hash": "5603696262609783718"
+      },
+      {
+        "file": "src/domains/invoices/invoices.resolver.ts",
+        "hash": "15186403504566546120"
+      },
+      {
+        "file": "src/domains/invoices/invoices.service.ts",
+        "hash": "4882230004354957424"
+      },
+      {
+        "file": "src/domains/invoices/schemas/invoice.schema.ts",
+        "hash": "8924468126275805453"
+      },
+      {
+        "file": "src/domains/invoices/tests/invoices.resolver.spec.ts",
+        "hash": "16169410686999296895"
+      },
+      {
+        "file": "src/domains/invoices/tests/invoices.service.spec.ts",
+        "hash": "15778673055734205496"
+      },
+      {
+        "file": "src/domains/items/dto/create-item.input.ts",
+        "hash": "8553854092523954751"
+      },
+      {
+        "file": "src/domains/items/dto/update-item.input.ts",
+        "hash": "10459554632341640881"
+      },
+      {
+        "file": "src/domains/items/entities/item.entity.ts",
+        "hash": "12961150348359492333"
+      },
+      {
+        "file": "src/domains/items/items.module.ts",
+        "hash": "1800614291500805302"
+      },
+      {
+        "file": "src/domains/items/items.repository.ts",
+        "hash": "6572876255849871530"
+      },
+      {
+        "file": "src/domains/items/items.resolver.ts",
+        "hash": "4389308153509534698"
+      },
+      {
+        "file": "src/domains/items/items.service.ts",
+        "hash": "8135769114262777387"
+      },
+      {
+        "file": "src/domains/items/schemas/item.schema.ts",
+        "hash": "5733663776852444403"
+      },
+      {
+        "file": "src/domains/items/tests/items.resolver.spec.ts",
+        "hash": "18265045942001187476"
+      },
+      {
+        "file": "src/domains/items/tests/items.service.spec.ts",
+        "hash": "10927201995195500024"
+      },
+      {
+        "file": "src/domains/parties/dto/create-party.input.ts",
+        "hash": "7338658124266335985"
+      },
+      {
+        "file": "src/domains/parties/dto/update-party.input.ts",
+        "hash": "12908621366576931218"
+      },
+      {
+        "file": "src/domains/parties/entities/party.entity.ts",
+        "hash": "13289572968909406040"
+      },
+      {
+        "file": "src/domains/parties/parties.module.ts",
+        "hash": "14470417945786530446"
+      },
+      {
+        "file": "src/domains/parties/parties.repository.ts",
+        "hash": "13595562222457235108"
+      },
+      {
+        "file": "src/domains/parties/parties.resolver.ts",
+        "hash": "7432816556823750490"
+      },
+      {
+        "file": "src/domains/parties/parties.service.ts",
+        "hash": "6670912573484267879"
+      },
+      {
+        "file": "src/domains/parties/schemas/party.schema.ts",
+        "hash": "2274492387651147170"
+      },
+      {
+        "file": "src/domains/parties/tests/parties.resolver.spec.ts",
+        "hash": "14717900516618411895"
+      },
+      {
+        "file": "src/domains/parties/tests/parties.service.spec.ts",
+        "hash": "6360903060163445652"
+      },
+      {
+        "file": "src/domains/taxes/dto/create-tax.input.ts",
+        "hash": "8958643315623178661"
+      },
+      {
+        "file": "src/domains/taxes/dto/update-tax.input.ts",
+        "hash": "11826081353187368789"
+      },
+      {
+        "file": "src/domains/taxes/entities/tax.entity.ts",
+        "hash": "6653900919082944763"
+      },
+      {
+        "file": "src/domains/taxes/schemas/tax.schema.ts",
+        "hash": "8218707021878259590"
+      },
+      {
+        "file": "src/domains/taxes/taxes.module.ts",
+        "hash": "13334748952219718668"
+      },
+      {
+        "file": "src/domains/taxes/taxes.repository.ts",
+        "hash": "1608462398359885791"
+      },
+      {
+        "file": "src/domains/taxes/taxes.resolver.ts",
+        "hash": "219270253668741595"
+      },
+      {
+        "file": "src/domains/taxes/taxes.service.ts",
+        "hash": "3120347640376123212"
+      },
+      {
+        "file": "src/domains/taxes/tests/taxes.resolver.spec.ts",
+        "hash": "11307044030844377384"
+      },
+      {
+        "file": "src/domains/taxes/tests/taxes.service.spec.ts",
+        "hash": "14993297594700279262"
+      },
+      {
+        "file": "src/domains/uoms/dto/create-uom.input.ts",
+        "hash": "14217526834315752099"
+      },
+      {
+        "file": "src/domains/uoms/dto/update-uom.input.ts",
+        "hash": "14634644814513771055"
+      },
+      {
+        "file": "src/domains/uoms/entities/uom.entity.ts",
+        "hash": "10580217888822168666"
+      },
+      {
+        "file": "src/domains/uoms/schemas/uom.schema.ts",
+        "hash": "15658877943608108651"
+      },
+      {
+        "file": "src/domains/uoms/tests/uoms.resolver.spec.ts",
+        "hash": "15131846121273890817"
+      },
+      {
+        "file": "src/domains/uoms/tests/uoms.service.spec.ts",
+        "hash": "1222403248088421954"
+      },
+      {
+        "file": "src/domains/uoms/uoms.module.ts",
+        "hash": "17450287073857010129"
+      },
+      {
+        "file": "src/domains/uoms/uoms.repository.ts",
+        "hash": "18007073989875527683"
+      },
+      {
+        "file": "src/domains/uoms/uoms.resolver.ts",
+        "hash": "630527541393351413"
+      },
+      {
+        "file": "src/domains/uoms/uoms.service.ts",
+        "hash": "4339012470141867801"
+      },
+      {
+        "file": "src/domains/users/dto/create-user.input.ts",
+        "hash": "18123741794128014647"
+      },
+      {
+        "file": "src/domains/users/dto/update-user.input.ts",
+        "hash": "4547533784321460006"
+      },
+      {
+        "file": "src/domains/users/entities/user.entity.ts",
+        "hash": "10445987891488061967"
+      },
+      {
+        "file": "src/domains/users/schemas/user.schema.ts",
+        "hash": "16464057952470935876"
+      },
+      {
+        "file": "src/domains/users/tests/users.resolver.spec.ts",
+        "hash": "5486964631105126366"
+      },
+      {
+        "file": "src/domains/users/tests/users.service.spec.ts",
+        "hash": "14228144417953345405"
+      },
+      {
+        "file": "src/domains/users/users.module.ts",
+        "hash": "13702289183469243030"
+      },
+      {
+        "file": "src/domains/users/users.repository.ts",
+        "hash": "1311133434065145699"
+      },
+      {
+        "file": "src/domains/users/users.resolver.ts",
+        "hash": "13375758115641316298"
+      },
+      {
+        "file": "src/domains/users/users.service.ts",
+        "hash": "14683968704289287931"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "14671399649815049477"
+      },
+      {
+        "file": "src/middlewares/logger.middleware.ts",
+        "hash": "9836229329652607551"
+      },
+      {
+        "file": "src/schema.gql",
+        "hash": "16468364119021966257"
+      },
+      {
+        "file": "test/app.e2e-spec.ts",
+        "hash": "13883774902861913868"
+      },
+      {
+        "file": "test/jest-e2e.json",
+        "hash": "14860688533455510502"
+      },
+      {
+        "file": "tsconfig.build.json",
+        "hash": "276845246908739715"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "12173017596181463606"
+      }
+    ]
+  }
+}
