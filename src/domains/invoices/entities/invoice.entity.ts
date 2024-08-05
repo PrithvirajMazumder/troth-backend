@@ -52,7 +52,7 @@ export class Invoice extends InvoiceSchema {
   tax?: Tax
 
   @Field()
-  no: string
+  no: number
 
   @Field(() => Bank, { nullable: true })
   bank?: Bank

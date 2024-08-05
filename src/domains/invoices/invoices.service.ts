@@ -34,8 +34,7 @@ export class InvoicesService {
 
   async getNextIncrementedInvoiceNumber() {
     const latestInvoice = await this.invoicesRepository.findOne({}).sort({ no: -1 }).limit(1)
-
-    return parseInt(latestInvoice?.no) + 1
+    return latestInvoice ? latestInvoice?.no + 1 : 1
   }
 
   findInvoiceWithNo(no: string) {

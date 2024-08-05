@@ -22,7 +22,7 @@ export type InvoiceDocument = Invoice & Document
 @Schema()
 export class Invoice {
   @Prop({ required: true })
-  no: string
+  no: number
 
   @Prop({ required: true })
   companyId: string

@@ -35,8 +35,8 @@ export class CreateInvoiceInput {
   @Field()
   taxId: string
 
-  @Field()
-  no: string
+  @Field(() => Int)
+  no: number
 
   @Field()
   bankId: string

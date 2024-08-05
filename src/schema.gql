@@ -85,7 +85,7 @@ type Invoice {
   vehicleNumber: String
   company: Company
   tax: Tax
-  no: String!
+  no: Float!
   bank: Bank
   status: InvoiceStatus!
 }
@@ -292,7 +292,7 @@ input CreateInvoiceInput {
   date: String!
   companyId: String!
   taxId: String!
-  no: String!
+  no: Int!
   bankId: String!
 }
 
@@ -308,7 +308,7 @@ input UpdateInvoiceInput {
   vehicleNumber: String
   date: String
   taxId: String
-  no: String
+  no: Int
   bankId: String
   id: String!
   status: InvoiceStatus
