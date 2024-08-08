@@ -21,7 +21,7 @@ export type InvoiceDocument = Invoice & Document
 
 @Schema()
 export class Invoice {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   no: number
 
   @Prop({ required: true })
@@ -51,6 +51,10 @@ export class Invoice {
     enum: InvoiceStatusArr
   })
   status: string
+
+  @Prop({ required: true, default: () => new Date() })
+  createdAt: Date
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice)
+

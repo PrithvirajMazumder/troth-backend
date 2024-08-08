@@ -7,7 +7,7 @@ export abstract class EntityRepository<T extends Document> {
     return this.entityModel.findOne(entityFilterQuery, { __v: 0 })
   }
 
-  async find(entityFilterQuery: FilterQuery<T>): Promise<T[] | null> {
+  find(entityFilterQuery: FilterQuery<T>) {
     return this.entityModel.find(entityFilterQuery, { __v: 0 })
   }
 

@@ -13,8 +13,8 @@ export class InvoicesService {
     return this.invoicesRepository.save({ ...createInvoiceInput, status: InvoiceStatus.Draft })
   }
 
-  findAllByCompanyId(companyId: string) {
-    return this.invoicesRepository.find({ companyId })
+  async findAllByCompanyId(companyId: string) {
+    return this.invoicesRepository.find({ companyId }).sort({ createdAt: -1 })
   }
 
   findOne(id: string) {
