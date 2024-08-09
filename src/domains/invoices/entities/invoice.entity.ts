@@ -19,7 +19,7 @@ export class InvoiceItem extends InvoiceItemSchema {
   @Field(() => Int)
   quantity: number
 
-  @Field(() => Item, {nullable: true})
+  @Field(() => Item, { nullable: true })
   item?: Item
 
   @Field(() => Int)
@@ -59,4 +59,7 @@ export class Invoice extends InvoiceSchema {
 
   @Field(() => InvoiceStatus)
   status: InvoiceStatus
+
+  @Field(() => Boolean, { nullable: true })
+  shouldUseIgst: boolean
 }

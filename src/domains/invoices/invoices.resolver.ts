@@ -34,12 +34,12 @@ export class InvoicesResolver {
     return this.invoicesService.findAllByCompanyId(companyId)
   }
 
-  @Query(() => Invoice, { name: 'invoice' })
+  @Query(() => Invoice, { name: 'invoice', nullable: true })
   findOne(@Args('id') id: string) {
     return this.invoicesService.findOne(id)
   }
 
-  @Query(() => Invoice, { name: 'invoiceByNo' })
+  @Query(() => Invoice, { name: 'invoiceByNo', nullable: true })
   findOneByNo(@Args('no') no: string) {
     return this.invoicesService.findInvoiceWithNo(no)
   }

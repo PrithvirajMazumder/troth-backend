@@ -88,6 +88,7 @@ type Invoice {
   no: Float!
   bank: Bank
   status: InvoiceStatus!
+  shouldUseIgst: Boolean
 }
 
 enum InvoiceStatus {
@@ -119,8 +120,8 @@ type Query {
   parties(companyId: String!): [Party!]!
   party(id: String!): Party!
   invoices(companyId: String!): [Invoice!]!
-  invoice(id: String!): Invoice!
-  invoiceByNo(no: String!): Invoice!
+  invoice(id: String!): Invoice
+  invoiceByNo(no: String!): Invoice
   suggestedNextInvoiceNumber: Float!
   challans: [Challan!]!
   challan(id: Int!): Challan!
@@ -294,6 +295,7 @@ input CreateInvoiceInput {
   taxId: String!
   no: Int!
   bankId: String!
+  shouldUseIgst: Boolean
 }
 
 input CreateInvoiceItemInput {
@@ -310,6 +312,7 @@ input UpdateInvoiceInput {
   taxId: String
   no: Int
   bankId: String
+  shouldUseIgst: Boolean
   id: String!
   status: InvoiceStatus
 }

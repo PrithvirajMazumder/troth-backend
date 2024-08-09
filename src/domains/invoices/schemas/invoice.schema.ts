@@ -54,7 +54,9 @@ export class Invoice {
 
   @Prop({ required: true, default: () => new Date() })
   createdAt: Date
+
+  @Prop({ required: false, default: false })
+  shouldUseIgst: boolean
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice)
-

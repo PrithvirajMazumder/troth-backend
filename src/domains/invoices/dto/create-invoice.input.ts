@@ -1,5 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql'
-import { IsDateString, IsNotEmpty } from 'class-validator'
+import { IsBoolean, IsDateString, IsNotEmpty, IsOptional } from 'class-validator'
 
 @InputType()
 export class CreateInvoiceItemInput {
@@ -22,6 +22,7 @@ export class CreateInvoiceInput {
   partyId: string
 
   @Field()
+  @IsOptional()
   vehicleNumber: string
 
   @IsNotEmpty()
@@ -40,4 +41,9 @@ export class CreateInvoiceInput {
 
   @Field()
   bankId: string
+
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, { nullable: true })
+  shouldUseIgst: boolean
 }
