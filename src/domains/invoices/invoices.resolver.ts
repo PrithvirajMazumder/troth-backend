@@ -12,6 +12,10 @@ import { Bank } from '@/domains/banks/entities/bank.entity'
 import { ItemsService } from '@/domains/items/items.service'
 import { PartiesService } from '@/domains/parties/parties.service'
 import { Party } from '@/domains/parties/entities/party.entity'
+import {
+  AllowedInvoiceStatus,
+  InvoiceStatus
+} from '@/domains/invoices/constants/allowedInvoiceStatus'
 
 @Resolver(() => Invoice)
 export class InvoicesResolver {
@@ -57,6 +61,18 @@ export class InvoicesResolver {
   @Mutation(() => Invoice)
   removeInvoice(@Args('id') id: string) {
     return this.invoicesService.remove(id)
+  }
+
+  @Mutation(() => Invoice)
+  updateInvoiceStatus(
+    @Args('id') id: string,
+    @Args({
+      name: 'status',
+      type: () => InvoiceStatus
+    })
+    status: AllowedInvoiceStatus
+  ) {
+    return this.invoicesService.updateStatusByInvoiceId(id, status)
   }
 
   @ResolveField('company', () => Company, { nullable: true })

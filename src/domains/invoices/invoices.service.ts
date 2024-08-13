@@ -3,7 +3,10 @@ import { CreateInvoiceInput } from '@/domains/invoices/dto/create-invoice.input'
 import { UpdateInvoiceInput } from '@/domains/invoices/dto/update-invoice.input'
 import { InvoicesRepository } from '@/domains/invoices/invoices.repository'
 import { Types } from 'mongoose'
-import { InvoiceStatus } from '@/domains/invoices/constants/allowedInvoiceStatus'
+import {
+  AllowedInvoiceStatus,
+  InvoiceStatus
+} from '@/domains/invoices/constants/allowedInvoiceStatus'
 
 @Injectable()
 export class InvoicesService {
@@ -35,6 +38,11 @@ export class InvoicesService {
   async getNextIncrementedInvoiceNumber() {
     const latestInvoice = await this.invoicesRepository.findOne({}).sort({ no: -1 }).limit(1)
     return latestInvoice ? latestInvoice?.no + 1 : 1
+  }
+
+  updateStatusByInvoiceId(id: string, status: AllowedInvoiceStatus) {
+    const invoiceId = new Types.ObjectId(id)
+    return this.invoicesRepository.findOneAndUpdate(invoiceId, { status })
   }
 
   findInvoiceWithNo(no: string) {
