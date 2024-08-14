@@ -16,6 +16,7 @@ import { PartiesModule } from '@/domains/parties/parties.module'
 import { InvoicesModule } from '@/domains/invoices/invoices.module'
 import { ChallansModule } from '@/domains/challans/challans.module'
 import { join } from 'path'
+import { StatesModule } from './domains/states/states.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { join } from 'path'
     ItemsModule,
     PartiesModule,
     InvoicesModule,
-    ChallansModule
+    ChallansModule,
+    StatesModule
   ],
   controllers: [AppController],
   providers: [AppService]

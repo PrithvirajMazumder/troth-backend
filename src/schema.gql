@@ -102,6 +102,14 @@ type Challan {
   exampleField: Int!
 }
 
+type State {
+  """This field will be used to display the actual name of the state"""
+  displayName: String!
+
+  """This is a unique identifier of a state"""
+  value: String!
+}
+
 type Query {
   companies(userId: String!): [Company!]!
   company(id: String!): Company!
@@ -125,6 +133,7 @@ type Query {
   suggestedNextInvoiceNumber: Float!
   challans: [Challan!]!
   challan(id: Int!): Challan!
+  indianStates: [State!]!
 }
 
 input StringArrayInput {
