@@ -97,6 +97,11 @@ enum InvoiceStatus {
   Paid
 }
 
+type InvoiceCountByDateRange {
+  date: String!
+  count: Float!
+}
+
 type Challan {
   """Example field (placeholder)"""
   exampleField: Int!
@@ -128,6 +133,7 @@ type Query {
   parties(companyId: String!): [Party!]!
   party(id: String!): Party!
   invoices(companyId: String!): [Invoice!]!
+  getCountByDateRange(invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput!): [InvoiceCountByDateRange!]!
   invoice(id: String!): Invoice
   invoiceByNo(no: String!): Invoice
   suggestedNextInvoiceNumber: Float!
@@ -138,6 +144,11 @@ type Query {
 
 input StringArrayInput {
   ids: [String!]!
+}
+
+input InvoicesCountByDateRangeInput {
+  endingDate: String
+  monthsFromStart: Int
 }
 
 type Mutation {

@@ -13,7 +13,10 @@ export class InvoicesService {
   constructor(private readonly invoicesRepository: InvoicesRepository) {}
 
   create(createInvoiceInput: CreateInvoiceInput) {
-    return this.invoicesRepository.save({ ...createInvoiceInput, status: InvoiceStatus.Draft })
+    return this.invoicesRepository.save({
+      ...createInvoiceInput,
+      status: InvoiceStatus.Draft
+    })
   }
 
   async findAllByCompanyId(companyId: string) {
@@ -47,5 +50,9 @@ export class InvoicesService {
 
   findInvoiceWithNo(no: string) {
     return this.invoicesRepository.findOne({ no })
+  }
+
+  getInvoiceCountByDateRange(endingDate = new Date(), monthsFromStart = 6) {
+    return this.invoicesRepository.getInvoiceCountByMonthAndYear(endingDate, monthsFromStart)
   }
 }

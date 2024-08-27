@@ -16,9 +16,14 @@ import {
   AllowedInvoiceStatus,
   InvoiceStatus
 } from '@/domains/invoices/constants/allowedInvoiceStatus'
+import { Logger } from '@nestjs/common'
+import { InvoiceCountByDateRange } from '@/domains/invoices/schemas/invoiceCountByDateRange.schema'
+import { InvoicesCountByDateRangeInput } from '@/domains/invoices/types/invoicesCountByDateRange.type'
 
 @Resolver(() => Invoice)
 export class InvoicesResolver {
+  private logger: Logger
+
   constructor(
     private readonly invoicesService: InvoicesService,
     private readonly companiesService: CompaniesService,
@@ -26,7 +31,9 @@ export class InvoicesResolver {
     private readonly taxesService: TaxesService,
     private readonly itemsService: ItemsService,
     private readonly partiesService: PartiesService
-  ) {}
+  ) {
+    this.logger = new Logger()
+  }
 
   @Mutation(() => Invoice)
   createInvoice(@Args('createInvoiceInput') createInvoiceInput: CreateInvoiceInput) {
@@ -34,8 +41,31 @@ export class InvoicesResolver {
   }
 
   @Query(() => [Invoice], { name: 'invoices' })
-  findAllByCompanyId(@Args('companyId') companyId: string) {
+  async findAllByCompanyId(@Args('companyId') companyId: string) {
+    this.logger.log(
+      (await this.invoicesService.getInvoiceCountByDateRange()).map((invoiceCount) => ({
+        date: invoiceCount._id,
+        count: invoiceCount.count
+      }))
+    )
     return this.invoicesService.findAllByCompanyId(companyId)
+  }
+
+  @Query(() => [InvoiceCountByDateRange], { name: 'getCountByDateRange' })
+  async getCountByDateRange(
+    @Args('invoicesCountByDateRangeInput')
+    invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput
+  ) {
+    const { monthsFromStart, endingDate } = invoicesCountByDateRangeInput
+    return (
+      await this.invoicesService.getInvoiceCountByDateRange(
+        endingDate ? new Date(endingDate) : undefined,
+        monthsFromStart
+      )
+    )?.map((invoiceCount) => ({
+      date: invoiceCount._id,
+      count: invoiceCount.count
+    }))
   }
 
   @Query(() => Invoice, { name: 'invoice', nullable: true })
