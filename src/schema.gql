@@ -133,7 +133,7 @@ type Query {
   parties(companyId: String!): [Party!]!
   party(id: String!): Party!
   invoices(companyId: String!): [Invoice!]!
-  getCountByDateRange(invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput!): [InvoiceCountByDateRange!]!
+  invoiceCountByDateRange(invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput!): [InvoiceCountByDateRange!]!
   invoice(id: String!): Invoice
   invoiceByNo(no: String!): Invoice
   suggestedNextInvoiceNumber: Float!

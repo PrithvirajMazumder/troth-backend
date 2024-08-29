@@ -45,7 +45,7 @@ export class InvoicesResolver {
     return this.invoicesService.findAllByCompanyId(companyId)
   }
 
-  @Query(() => [InvoiceCountByDateRange], { name: 'getCountByDateRange' })
+  @Query(() => [InvoiceCountByDateRange], { name: 'invoiceCountByDateRange' })
   getCountByDateRange(
     @Args('invoicesCountByDateRangeInput')
     invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput
