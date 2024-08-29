@@ -42,30 +42,19 @@ export class InvoicesResolver {
 
   @Query(() => [Invoice], { name: 'invoices' })
   async findAllByCompanyId(@Args('companyId') companyId: string) {
-    this.logger.log(
-      (await this.invoicesService.getInvoiceCountByDateRange()).map((invoiceCount) => ({
-        date: invoiceCount._id,
-        count: invoiceCount.count
-      }))
-    )
     return this.invoicesService.findAllByCompanyId(companyId)
   }
 
   @Query(() => [InvoiceCountByDateRange], { name: 'getCountByDateRange' })
-  async getCountByDateRange(
+  getCountByDateRange(
     @Args('invoicesCountByDateRangeInput')
     invoicesCountByDateRangeInput: InvoicesCountByDateRangeInput
   ) {
     const { monthsFromStart, endingDate } = invoicesCountByDateRangeInput
-    return (
-      await this.invoicesService.getInvoiceCountByDateRange(
-        endingDate ? new Date(endingDate) : undefined,
-        monthsFromStart
-      )
-    )?.map((invoiceCount) => ({
-      date: invoiceCount._id,
-      count: invoiceCount.count
-    }))
+    return this.invoicesService.getInvoiceCountByDateRange(
+      endingDate ? new Date(endingDate) : undefined,
+      monthsFromStart
+    )
   }
 
   @Query(() => Invoice, { name: 'invoice', nullable: true })

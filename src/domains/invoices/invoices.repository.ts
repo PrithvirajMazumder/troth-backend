@@ -42,6 +42,27 @@ export class InvoicesRepository extends EntityRepository<InvoiceDocument> {
             $sum: 1
           }
         }
+      },
+      {
+        $group: {
+          _id: null,
+          result: {
+            $push: {
+              k: '$_id',
+              v: {
+                _id: '$_id',
+                count: '$count'
+              }
+            }
+          }
+        }
+      },
+      {
+        $replaceRoot: {
+          newRoot: {
+            $arrayToObject: '$result'
+          }
+        }
       }
     ])
   }

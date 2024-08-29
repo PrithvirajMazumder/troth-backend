@@ -7,6 +7,7 @@ import {
   AllowedInvoiceStatus,
   InvoiceStatus
 } from '@/domains/invoices/constants/allowedInvoiceStatus'
+import { eachDayOfInterval, format, subMonths } from 'date-fns'
 
 @Injectable()
 export class InvoicesService {
@@ -52,7 +53,23 @@ export class InvoicesService {
     return this.invoicesRepository.findOne({ no })
   }
 
-  getInvoiceCountByDateRange(endingDate = new Date(), monthsFromStart = 6) {
-    return this.invoicesRepository.getInvoiceCountByMonthAndYear(endingDate, monthsFromStart)
+  async getInvoiceCountByDateRange(endingDate = new Date(), monthsFromStart = 6) {
+    const invoicesCount = await this.invoicesRepository.getInvoiceCountByMonthAndYear(
+      endingDate,
+      monthsFromStart
+    )
+    const interval = {
+      start: subMonths(endingDate, monthsFromStart),
+      end: endingDate
+    }
+    const days = eachDayOfInterval(interval)
+    return days.map((day) => {
+      const dateStr = format(day, 'dd/MM/yyyy')
+      const invoicesCountMap = invoicesCount[0]
+      return {
+        date: dateStr,
+        count: invoicesCountMap[dateStr] ? invoicesCountMap[dateStr]?.count : 0
+      }
+    })
   }
 }
